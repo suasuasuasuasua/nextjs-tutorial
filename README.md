@@ -1,5 +1,19 @@
 # [Next.js tutorial](https://nextjs.org/learn/dashboard-app/)
 
+<!--toc:start-->
+- [[Next.js tutorial](https://nextjs.org/learn/dashboard-app/)](#nextjs-tutorialhttpsnextjsorglearndashboard-app)
+  - [Chapter 1 - Getting Started](#chapter-1-getting-started)
+    - [Project Structure](#project-structure)
+    - [Typescript??](#typescript)
+    - [Running the project](#running-the-project)
+  - [Chapter 2 - CSS Styling](#chapter-2-css-styling)
+    - [Styling Alternatives](#styling-alternatives)
+  - [Chapter 3 - Optimizing Fonts and Images](#chapter-3-optimizing-fonts-and-images)
+  - [Chapter 4 - Creating Layouts and Pages](#chapter-4-creating-layouts-and-pages)
+  - [Chapter 5 - Navigating Between Pages](#chapter-5-navigating-between-pages)
+    - [Why is There No Refresh?](#why-is-there-no-refresh)
+<!--toc:end-->
+
 ## Chapter 1 - Getting Started
 
 We are going to be using `pnpm`, an alternative package manager to
@@ -146,3 +160,36 @@ Root layouts like `app/layout.tsx` are required. Any UI that we add to the root
 layout will be shared across all pages in the application. The layout that we
 defined for the dashboard is unique to the dashboard pages, so we don't need to
 add any additional UI here.
+
+## Chapter 5 - Navigating Between Pages
+
+Traditionally, if we wanted to link between pages, we would use the anchor tag
+`<a>`. The problem with this approach is that when we navigate between pages,
+there is a full page refresh on the browser.
+
+Instead, we should use the `<Link>` component from `next/link`. This link allows
+us to write client side javascript. We can go ahead and fix the anchors in
+`./app/ui/dashboard/nav-links.tsx` to use the `<Link>` instead.
+
+### Why is There No Refresh?
+
+Next.js automatically code splits your application by route segments. What this
+means is that pages are effectively isolated from one another. If one page has
+an error, the rest of them should be fine still. This is different than
+traditional React SPA which makes the browser load the entire application on
+initial load.
+
+Moreover, whenever `<Link>` appears in the viewport, Next.js will prefetch the
+code for the linked route in the background, so by the time that the user does
+click the link the destination page is already loaded in the background. This is
+why the page transition is near-instant.
+
+
+### Interactive Page Design
+
+A common UI pattern is to show the user which page they are currently on.
+Next.js provides a hook called `usePathname()` that returns the user's current
+path from the URL.
+
+Since `usePathname()` is a hook, we have to transform our typescript file into a
+client component by explicitly stating the `use client` directive.
