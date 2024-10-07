@@ -10,4 +10,4 @@ install:
   pnpm install
 
 fmt:
-  prettier --write '**/*.{css,json,ts,tsx,html,yaml}'
+  prettier --write '**/*.{html,css,js,jsx,ts,tsx,json,yaml,yml}'
