@@ -70,3 +70,52 @@ CSS modules are a *traditional* CSS approach that allows us to scope CSS rules
 to a specific component. The main benefit to CSS modules is that they are
 locally scoped to components by default, which reduces the risk of styling
 conflicts.
+
+## Chapter 3 - Optimizing Fonts and Images
+
+Fonts on a website can significantly impact performance especially if you are
+using custom fonts which need to be fetched and loaded.
+
+Google's search engine optimization (SEO) evaluates and ranks the performance of
+your site base don Google's [Core Web
+Vitals](https://developers.google.com/search/docs/appearance/core-web-vitals).
+Google observes how real uesrs interact with the website, also known as *field
+data* as opposed to *lab data* (don't need to know the nitty-gritty). This is
+important because page and user experience is a strong ranking factor.
+
+*Cumulative Layout Shift* is a metric that Google also uses when evaluating such
+web vitals to rank performance and user experience. With fonts, layout shifts
+happen when the browser initially loads and renders some fallback system font,
+then switches over to the custom font. The swap between the fallback and custom
+font can cause tons of shifting to text size, spcaing, elements, etc.
+
+Next.js is nice in this regard because it downloads all font files and builds
+and hosts them as static assets. That means that when users visit the
+application, they don't have to wait for any additional network requests.
+
+Adding a font is as simple as:
+
+```typescript
+// ./app/ui/fonts.ts
+
+import { Inter } from 'next/font/google';
+
+// We can import some font using the next/font API from google
+// for example, we can grab a subset of the font we'd like to load
+export const inter = Inter({
+  subsets: ["latin"]
+});
+```
+
+Image optimization is another rabbithole, but the idea is the same. We store to
+and serve images from the `/public` folder. `next/image` is a component that
+Next.js provides to automatically optimize our images, so we don't spend time
+worrying about ensuring compatibility between devices, preventing layout shift,
+etc.
+
+The `<Image>` component is an extension of the generic `<img>` tag that includes
+such optimization.
+
+With TailwindCSS, we can create "breakpoints" like `sm` and `md` to create
+responsive design. For example, we can use blocks and hiddens to show certain
+images at certain browser sizes.
