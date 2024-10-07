@@ -8,7 +8,6 @@ We are going to be using `pnpm`, an alternative package manager to
 ```bash
 # Install pnpm if you don't have it (or use the devenv shell :)))
 npm install -g pnpm
-
 # Initialize the Next.js app from a template npx create-next-app@latest
 nextjs-dashboard \
     --example "https://github.com/vercel/next-learn/tree/main/dashboard/starter-example" \
@@ -30,7 +29,6 @@ nextjs-dashboard \
 - `public/` is where we will add static assets like images and whatnot
 - `*.config.*` are configuration files for the framework tooling. In general,
   this is a set and forget and is done already for us in the project
-
 ### Typescript??
 
 Modern web development generally uses `typescript`, a *more* type-safe version
@@ -119,3 +117,32 @@ such optimization.
 With TailwindCSS, we can create "breakpoints" like `sm` and `md` to create
 responsive design. For example, we can use blocks and hiddens to show certain
 images at certain browser sizes.
+
+## Chapter 4 - Creating Layouts and Pages
+
+Next.js uses a file-system routing where folders are used to create nested
+routes. Each folder represents a route segment in the URL segment. We can create
+separate user interfaces for each route using the `layout.tsx` and `page.tsx`
+files.
+
+For example, `acme.com/dashboard/invoices` maps to `app/dashboard/invoices` in
+the actual folder structure.
+
+`page.tsx` is a special Next.js file that exports a React component, and it is
+**required** for the route to be accessible.
+
+- for example, `./app/page.tsx` routes to `/` while if we add
+`./app/ui/dashboard/page.tsx` this will route to `/dashboard`
+
+`layout.tsx` is another special file that defines some sort of shared structure
+for pages. For example, we might want to share the same navigation UI.
+
+One benefit of using routes in Next.js is that on navigation, page components
+are lazily loaded. The page layout is figured out, while the page components
+update. Thus, we don' thave to re-render the layout each time we revisit a page.
+This is known as partial rendering.
+
+Root layouts like `app/layout.tsx` are required. Any UI that we add to the root
+layout will be shared across all pages in the application. The layout that we
+defined for the dashboard is unique to the dashboard pages, so we don't need to
+add any additional UI here.
