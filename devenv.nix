@@ -5,6 +5,7 @@
   # https://devenv.sh/packages/
   packages = with pkgs; [
     git
+    just
     onefetch
   ];
 
@@ -20,4 +21,10 @@
   enterShell = ''
     onefetch
   '';
+
+  pre-commit.hooks = {
+    prettier = {
+      enable = true;
+    };
+  };
 }
