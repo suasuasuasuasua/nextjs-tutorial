@@ -1,6 +1,7 @@
 # [Next.js tutorial](https://nextjs.org/learn/dashboard-app/)
 
 <!--toc:start-->
+
 - [[Next.js tutorial](https://nextjs.org/learn/dashboard-app/)](#nextjs-tutorialhttpsnextjsorglearndashboard-app)
   - [Chapter 1 - Getting Started](#chapter-1-getting-started)
     - [Project Structure](#project-structure)
@@ -10,9 +11,8 @@
     - [Styling Alternatives](#styling-alternatives)
   - [Chapter 3 - Optimizing Fonts and Images](#chapter-3-optimizing-fonts-and-images)
   - [Chapter 4 - Creating Layouts and Pages](#chapter-4-creating-layouts-and-pages)
-  - [Chapter 5 - Navigating Between Pages](#chapter-5-navigating-between-pages)
-    - [Why is There No Refresh?](#why-is-there-no-refresh)
-<!--toc:end-->
+  - [Chapter 5 - Navigating Between Pages](#chapter-5-navigating-between-pages) - [Why is There No Refresh?](#why-is-there-no-refresh)
+  <!--toc:end-->
 
 ## Chapter 1 - Getting Started
 
@@ -32,20 +32,21 @@ nextjs-dashboard \
 
 - `app/` is where we will be spending most of our time
   - `app/lib/` is where we will define helper functions for utility, data
-  fetching, etc.
+    fetching, etc.
     - When we are building user interfaces, we don't necessarily have real data
-    or databases or APIs set up yet
+      or databases or APIs set up yet
     - Currently, we have placeholder data located at
-    `app/lib/placeholder-data.ts`
+      `app/lib/placeholder-data.ts`
   - `app/ui` is where we will be defining UI components for the application. In
-  general, we need to *stylize* the components but the template has done that
-  for us already
+    general, we need to _stylize_ the components but the template has done that
+    for us already
 - `public/` is where we will add static assets like images and whatnot
 - `*.config.*` are configuration files for the framework tooling. In general,
   this is a set and forget and is done already for us in the project
+
 ### Typescript??
 
-Modern web development generally uses `typescript`, a *more* type-safe version
+Modern web development generally uses `typescript`, a _more_ type-safe version
 of `javascript`. At the end of the day, we will have to transpile the `ts` or
 `tsx` to `js` anyway. The rationale is to prevent mismanaged data and silly
 mistakes.
@@ -78,7 +79,7 @@ maintaining separate stylesheets like having a `button-blue` vs a
 
 ### Styling Alternatives
 
-CSS modules are a *traditional* CSS approach that allows us to scope CSS rules
+CSS modules are a _traditional_ CSS approach that allows us to scope CSS rules
 to a specific component. The main benefit to CSS modules is that they are
 locally scoped to components by default, which reduces the risk of styling
 conflicts.
@@ -91,11 +92,11 @@ using custom fonts which need to be fetched and loaded.
 Google's search engine optimization (SEO) evaluates and ranks the performance of
 your site base don Google's [Core Web
 Vitals](https://developers.google.com/search/docs/appearance/core-web-vitals).
-Google observes how real uesrs interact with the website, also known as *field
-data* as opposed to *lab data* (don't need to know the nitty-gritty). This is
+Google observes how real uesrs interact with the website, also known as _field
+data_ as opposed to _lab data_ (don't need to know the nitty-gritty). This is
 important because page and user experience is a strong ranking factor.
 
-*Cumulative Layout Shift* is a metric that Google also uses when evaluating such
+_Cumulative Layout Shift_ is a metric that Google also uses when evaluating such
 web vitals to rank performance and user experience. With fonts, layout shifts
 happen when the browser initially loads and renders some fallback system font,
 then switches over to the custom font. The swap between the fallback and custom
@@ -110,12 +111,12 @@ Adding a font is as simple as:
 ```typescript
 // ./app/ui/fonts.ts
 
-import { Inter } from 'next/font/google';
+import { Inter } from "next/font/google";
 
 // We can import some font using the next/font API from google
 // for example, we can grab a subset of the font we'd like to load
 export const inter = Inter({
-  subsets: ["latin"]
+  subsets: ["latin"],
 });
 ```
 
@@ -146,7 +147,7 @@ the actual folder structure.
 **required** for the route to be accessible.
 
 - for example, `./app/page.tsx` routes to `/` while if we add
-`./app/ui/dashboard/page.tsx` this will route to `/dashboard`
+  `./app/ui/dashboard/page.tsx` this will route to `/dashboard`
 
 `layout.tsx` is another special file that defines some sort of shared structure
 for pages. For example, we might want to share the same navigation UI.
@@ -184,7 +185,6 @@ code for the linked route in the background, so by the time that the user does
 click the link the destination page is already loaded in the background. This is
 why the page transition is near-instant.
 
-
 ### Interactive Page Design
 
 A common UI pattern is to show the user which page they are currently on.
@@ -193,3 +193,20 @@ path from the URL.
 
 Since `usePathname()` is a hook, we have to transform our typescript file into a
 client component by explicitly stating the `use client` directive.
+
+## Chapter 6 - Setting Up the Database
+
+We can create a `postgres` database through Vercel as the provider.
+
+- Navigate to the project storage, then select postgres
+- Click on `.env.local` to find the secret keys
+  - Ignore these with the `.gitignore`
+- `pnpm i @vercel/postgres` to download the `postgres` sdk
+
+`./app/seed/route.ts` defines a Next.js route handler which is used to seed the
+database. The idea is that this file creates a server side endpoint which we can
+access to start filling in the database. Initially, it will take placeholder
+data from a file and populate the table with sql commands.
+
+In Vercel, we can view the tables and even run commands to interact with the
+database.
