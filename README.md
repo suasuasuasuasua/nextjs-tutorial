@@ -1,5 +1,4 @@
 # [Next.js tutorial](https://nextjs.org/learn/dashboard-app/)
-a
 
 ## Chapter 1 - Getting Started
 
@@ -10,8 +9,8 @@ We are going to be using `pnpm`, an alternative package manager to
 # Install pnpm if you don't have it (or use the devenv shell :)))
 npm install -g pnpm
 
-# Initialize the Next.js app from a template
-npx create-next-app@latest nextjs-dashboard \
+# Initialize the Next.js app from a template npx create-next-app@latest
+nextjs-dashboard \
     --example "https://github.com/vercel/next-learn/tree/main/dashboard/starter-example" \
     --use-pnpm
 ```
@@ -47,3 +46,27 @@ database schema.
 
 `pnpm i` to install all the packages, then `pnpm dev` to start the local
 development server.
+
+## Chapter 2 - CSS Styling
+
+`app/ui/global.css` is where we can define CSS rules for all the routes in the
+application. We can import the `global.css` file in any file, but it is best
+practice to import in the top-level component. In Next.js, this is called the
+root layout.
+
+`Tailwind` is a CSS framework that helps us write utility classes directly in
+our `tsx` markup. Basically, it's a way to speed up development when writing CSS
+styling.
+
+With Tailwind, we style elements by giving them class names like
+`text-blue-500.` Note that even though CSS styles are shared globally, we are
+only applying the class singularly to each element. We don't have to worry about
+maintaining separate stylesheets like having a `button-blue` vs a
+`paragraph-blue`, style collisions, etc.
+
+### Styling Alternatives
+
+CSS modules are a *traditional* CSS approach that allows us to scope CSS rules
+to a specific component. The main benefit to CSS modules is that they are
+locally scoped to components by default, which reduces the risk of styling
+conflicts.

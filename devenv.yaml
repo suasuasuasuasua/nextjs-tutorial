@@ -1,0 +1,6 @@
+inputs:
+  nixpkgs:
+    # url: github:cachix/devenv-nixpkgs/rolling
+    url: github:NixOS/nixpkgs/nixos-unstable
+  pre-commit-hooks:
+    url: github:cachix/pre-commit-hooks.nix

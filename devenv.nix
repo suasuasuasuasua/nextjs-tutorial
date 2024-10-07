@@ -1,11 +1,11 @@
-{ pkgs, lib, config, inputs, ... }:
-{
+{pkgs, ...}: {
   # https://devenv.sh/basics/
   env.GREET = "devenv";
 
   # https://devenv.sh/packages/
-  packages = with pkgs; [ 
-    git 
+  packages = with pkgs; [
+    git
+    onefetch
   ];
 
   languages.javascript = {
@@ -16,4 +16,8 @@
       enable = true;
     };
   };
+
+  enterShell = ''
+    onefetch
+  '';
 }
