@@ -7,6 +7,7 @@
     git
     just
     onefetch
+    typescript
   ];
 
   languages.javascript = {
@@ -15,6 +16,7 @@
     # npm but better?? idk it's what the nextjs tutorial says to use
     pnpm = {
       enable = true;
+      install.enable = true;
     };
   };
 
@@ -23,8 +25,12 @@
   '';
 
   pre-commit.hooks = {
-    prettier = {
-      enable = true;
-    };
+    # Nix
+    alejandra.enable = true;
+    flake-checker.enable = true;
+    deadnix.enable = true;
+
+    # HTML, CSS, JS, TS, etc.
+    prettier.enable = true;
   };
 }
