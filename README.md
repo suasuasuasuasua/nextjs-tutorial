@@ -1,8 +1,10 @@
-# [Next.js tutorial](https://nextjs.org/learn/dashboard-app/)
+# Next.js tutorial
+
+> [Tutorial](https://nextjs.org/learn/dashboard-app)
 
 <!--toc:start-->
 
-- [[Next.js tutorial](https://nextjs.org/learn/dashboard-app/)](#nextjs-tutorialhttpsnextjsorglearndashboard-app)
+- [Next.js tutorial](#nextjs-tutorial)
   - [Chapter 1 - Getting Started](#chapter-1-getting-started)
     - [Project Structure](#project-structure)
     - [Typescript??](#typescript)
@@ -11,7 +13,10 @@
     - [Styling Alternatives](#styling-alternatives)
   - [Chapter 3 - Optimizing Fonts and Images](#chapter-3-optimizing-fonts-and-images)
   - [Chapter 4 - Creating Layouts and Pages](#chapter-4-creating-layouts-and-pages)
-  - [Chapter 5 - Navigating Between Pages](#chapter-5-navigating-between-pages) - [Why is There No Refresh?](#why-is-there-no-refresh)
+  - [Chapter 5 - Navigating Between Pages](#chapter-5-navigating-between-pages)
+    - [Why is There No Refresh?](#why-is-there-no-refresh)
+    - [Interactive Page Design](#interactive-page-design)
+  - [Chapter 6 - Setting Up the Database](#chapter-6-setting-up-the-database)
   <!--toc:end-->
 
 ## Chapter 1 - Getting Started
