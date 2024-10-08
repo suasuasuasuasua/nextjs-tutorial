@@ -1,14 +1,17 @@
 {pkgs, ...}: {
-  # https://devenv.sh/basics/
-  env.GREET = "devenv";
-
   # https://devenv.sh/packages/
-  packages = with pkgs; [
-    git
-    just
-    onefetch
-    typescript
-  ];
+  packages = with pkgs;
+    [
+      git
+      just
+      onefetch
+      typescript
+    ]
+    ++ (
+      with pkgs.nodePackages; [
+        vercel
+      ]
+    );
 
   languages.javascript = {
     enable = true;
