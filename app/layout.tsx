@@ -1,3 +1,4 @@
+import React from "react";
 import "@/app/ui/global.css";
 import { inter } from "./ui/fonts";
 

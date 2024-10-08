@@ -10,4 +10,5 @@ install:
   pnpm install
 
 fmt:
-  prettier --write '**/*.{md,html,css,js,jsx,mjs,ts,tsx,json,yaml,yml}'
+  GLOBIGNORE=".:.." prettier --write 'app/**/*.{md,html,css,js,jsx,mjs,ts,tsx,json,yaml,yml}'
+  npx eslint --fix app/

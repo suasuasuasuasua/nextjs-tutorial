@@ -30,10 +30,17 @@
   pre-commit.hooks = {
     # Nix
     alejandra.enable = true;
-    flake-checker.enable = true;
     deadnix.enable = true;
 
     # HTML, CSS, JS, TS, etc.
     prettier.enable = true;
+    eslint = {
+      enable = true;
+      always_run = true;
+      args = [
+        "--fix"
+        "app/"
+      ];
+    };
   };
 }

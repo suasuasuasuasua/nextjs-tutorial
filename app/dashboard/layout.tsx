@@ -1,3 +1,4 @@
+import React from "react";
 import SideNav from "../ui/dashboard/sidenav";
 
 // The SideNav component is defined as a custom UI component
