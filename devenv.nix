@@ -1,17 +1,15 @@
 {pkgs, ...}: {
   # https://devenv.sh/packages/
-  packages = with pkgs;
-    [
-      git
-      just
-      onefetch
-      typescript
-    ]
-    ++ (
-      with pkgs.nodePackages; [
-        vercel
-      ]
-    );
+  packages = with pkgs; [
+    git
+    just
+    onefetch
+
+    commitizen
+
+    typescript
+    markdownlint-cli
+  ];
 
   languages.javascript = {
     enable = true;
@@ -23,14 +21,27 @@
     };
   };
 
-  enterShell = ''
-    onefetch
-  '';
+  # enterShell = ''
+  #   onefetch
+  # '';
 
   pre-commit.hooks = {
     # Nix
     alejandra.enable = true;
     deadnix.enable = true;
+
+    # Git
+    commitizen.enable = true;
+
+    # Docs
+    markdownlint.enable = true;
+    typos.enable = true;
+
+    # General
+    check-added-large-files.enable = true;
+    check-merge-conflicts.enable = true;
+    end-of-file-fixer.enable = true;
+    trim-trailing-whitespace.enable = true;
 
     # HTML, CSS, JS, TS, etc.
     prettier.enable = true;

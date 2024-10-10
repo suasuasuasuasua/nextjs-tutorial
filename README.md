@@ -2,23 +2,6 @@
 
 > [Tutorial](https://nextjs.org/learn/dashboard-app)
 
-<!--toc:start-->
-
-- [Next.js tutorial](#nextjs-tutorial)
-  - [Chapter 1 - Getting Started](#chapter-1-getting-started)
-    - [Project Structure](#project-structure)
-    - [Typescript??](#typescript)
-    - [Running the project](#running-the-project)
-  - [Chapter 2 - CSS Styling](#chapter-2-css-styling)
-    - [Styling Alternatives](#styling-alternatives)
-  - [Chapter 3 - Optimizing Fonts and Images](#chapter-3-optimizing-fonts-and-images)
-  - [Chapter 4 - Creating Layouts and Pages](#chapter-4-creating-layouts-and-pages)
-  - [Chapter 5 - Navigating Between Pages](#chapter-5-navigating-between-pages)
-    - [Why is There No Refresh?](#why-is-there-no-refresh)
-    - [Interactive Page Design](#interactive-page-design)
-  - [Chapter 6 - Setting Up the Database](#chapter-6-setting-up-the-database)
-  <!--toc:end-->
-
 ## Chapter 1 - Getting Started
 
 We are going to be using `pnpm`, an alternative package manager to
@@ -28,9 +11,9 @@ We are going to be using `pnpm`, an alternative package manager to
 # Install pnpm if you don't have it (or use the devenv shell :)))
 npm install -g pnpm
 # Initialize the Next.js app from a template npx create-next-app@latest
-nextjs-dashboard \
-    --example "https://github.com/vercel/next-learn/tree/main/dashboard/starter-example" \
-    --use-pnpm
+nextjs-dashboard --use-pnpm \
+    --example \
+    "https://github.com/vercel/next-learn/tree/main/dashboard/starter-example"
 ```
 
 ### Project Structure
@@ -95,7 +78,7 @@ Fonts on a website can significantly impact performance especially if you are
 using custom fonts which need to be fetched and loaded.
 
 Google's search engine optimization (SEO) evaluates and ranks the performance of
-your site base don Google's [Core Web
+your site based on Google's [Core Web
 Vitals](https://developers.google.com/search/docs/appearance/core-web-vitals).
 Google observes how real uesrs interact with the website, also known as _field
 data_ as opposed to _lab data_ (don't need to know the nitty-gritty). This is
@@ -105,7 +88,7 @@ _Cumulative Layout Shift_ is a metric that Google also uses when evaluating such
 web vitals to rank performance and user experience. With fonts, layout shifts
 happen when the browser initially loads and renders some fallback system font,
 then switches over to the custom font. The swap between the fallback and custom
-font can cause tons of shifting to text size, spcaing, elements, etc.
+font can cause tons of shifting to text size, spacing, elements, etc.
 
 Next.js is nice in this regard because it downloads all font files and builds
 and hosts them as static assets. That means that when users visit the
