@@ -49,6 +49,9 @@ importers:
       typescript:
         specifier: 5.5.2
         version: 5.5.2
+      typescript-eslint:
+        specifier: ^8.8.1
+        version: 8.8.1(eslint@9.12.0(jiti@1.21.6))(typescript@5.5.2)
       use-debounce:
         specifier: ^10.0.3
         version: 10.0.3(react@19.0.0-rc-f38c22b244-20240704)
@@ -80,9 +83,6 @@ importers:
       globals:
         specifier: ^15.10.0
         version: 15.10.0
-      typescript-eslint:
-        specifier: ^8.8.1
-        version: 8.8.1(eslint@9.12.0(jiti@1.21.6))(typescript@5.5.2)
       vercel:
         specifier: ^37.6.2
         version: 37.6.2
