@@ -1,17 +1,21 @@
 {pkgs, ...}: {
   # https://devenv.sh/packages/
-  packages = with pkgs; [
-    git
-    gnupg
+  packages = with pkgs;
+    [
+      git
+      gnupg
 
-    just
-    onefetch
+      just
+      onefetch
 
-    commitizen
+      commitizen
 
-    typescript
-    markdownlint-cli
-  ];
+      typescript
+      markdownlint-cli
+    ]
+    ++ (with nodePackages; [
+      vercel
+    ]);
 
   languages.javascript = {
     enable = true;
