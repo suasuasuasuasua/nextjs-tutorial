@@ -1,6 +1,3 @@
-// Renamed from ./tailwind.config.ts to ./tailwindn.config.cts to note that this is
-// a common js module...
-// source: https://stackoverflow.com/a/75256211
 import type { Config } from "tailwindcss";
 
 const config: Config = {
