@@ -188,8 +188,8 @@ We can create a `postgres` database through Vercel as the provider.
 
 - Navigate to the project storage, then select postgres
 - Click on `.env.local` to find the secret keys
-  - Ignore these with the `.gitignore`
-- `pnpm i @vercel/postgres` to download the `postgres` sdk
+  - Ignore these with the `.gitignore` - `pnpm i @vercel/postgres` to download
+    the `postgres` sdk
 
 `./app/seed/route.ts` defines a Next.js route handler which is used to seed the
 database. The idea is that this file creates a server side endpoint which we can
@@ -198,3 +198,44 @@ data from a file and populate the table with sql commands.
 
 In Vercel, we can view the tables and even run commands to interact with the
 database.
+
+## Chapter 7 - Fetching Data
+
+By default, Next.js uses React server components which give a few _nicities_
+
+- For one, since the components are _server side_, the server can do the heavy
+  lifting then send the result to the client. Moreover, server side components
+  support JS features like promises for asynchronous programming. This allows us
+  to program without using react functions like `useEffect` and `useState`.
+  Lastly, since the server components execute on the server, we can query the
+  database directly without interacting with some middleman API layer.
+
+For this tutorial, we will writing database queries in SQL -- the postgres
+flavor. We'll be using the Vercel Postgres SDK (software development kit), which
+is an efficient way to interact with our postgres database.
+
+- The SDK provides a few nice features like protection against SQL injection too
+
+### The Dashboard
+
+First, we'll modify the dashboard at `./app/dashboard/page.tsx` by adding data
+requesting features. In this file, we are exporting a page component which is
+`async`,which means that we can use `await` to fetch data.
+
+In the component body, we can declare `const` variables that contain the fetched
+data. One thing to note is that the data requests are unintentionally blocking
+each other right now, creating what's known as a request waterfall. Moreover,
+we learned that Next.js prerenders the routes to improve user experience and
+client performance. This is called static rendering, and when data is finally
+loaded the elements in the dashboard won't be moving around.
+
+### Request Waterfalls
+
+A request waterfall is when a series of requests happen sequentially because
+they depend on the order of completion. Most of the time, this isn't true and
+data fetching can be improved by processing these requests in parallel.
+
+One way to achieve parallel data fetching is by using Javascript's
+`Promise.all()` or `Promise.allSettled()` functions to initiate all promises at
+the same time. One problem with this approach is that one request which is
+disproportionately slower than the rest will slow all other requests down.

@@ -1,3 +1,4 @@
+import React from "react";
 import { lusitana } from "@/app/ui/fonts";
 import {
   AtSymbolIcon,
@@ -6,7 +7,6 @@ import {
 } from "@heroicons/react/24/outline";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { Button } from "./button";
-import React from "react";
 
 export default function LoginForm() {
   return (
