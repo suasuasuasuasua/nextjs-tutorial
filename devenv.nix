@@ -3,19 +3,20 @@
   packages = with pkgs;
     [
       git
+      commitizen
       gnupg
 
       just
+      fastfetch
       onefetch
-
-      commitizen
+      tree
 
       typescript
+
       markdownlint-cli
+      nixfmt-rfc-style
     ]
-    ++ (with nodePackages; [
-      vercel
-    ]);
+    ++ (with nodePackages; [vercel]);
 
   languages.javascript = {
     enable = true;
@@ -51,13 +52,8 @@
 
     # HTML, CSS, JS, TS, etc.
     prettier.enable = true;
-    eslint = {
-      enable = true;
-      always_run = true;
-      args = [
-        "--fix"
-        "app/"
-      ];
-    };
+    # eslint = {
+    #   enable = true;
+    # };
   };
 }
