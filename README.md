@@ -4,8 +4,8 @@
 
 ## Chapter 1 - Getting Started
 
-We are going to be using `pnpm`, an alternative package manager to
-`npm`, `yarn`, and whatnot, because of its speed.
+We are going to be using `pnpm`, an alternative package manager to `npm`,
+`yarn`, and whatnot, because of its speed.
 
 ```bash
 # Install pnpm if you don't have it (or use the devenv shell :)))
@@ -78,8 +78,8 @@ Fonts on a website can significantly impact performance especially if you are
 using custom fonts which need to be fetched and loaded.
 
 Google's search engine optimization (SEO) evaluates and ranks the performance of
-your site based on Google's [Core Web
-Vitals](https://developers.google.com/search/docs/appearance/core-web-vitals).
+your site based on Google's
+[Core Web Vitals](https://developers.google.com/search/docs/appearance/core-web-vitals).
 Google observes how real uesrs interact with the website, also known as _field
 data_ as opposed to _lab data_ (don't need to know the nitty-gritty). This is
 important because page and user experience is a strong ranking factor.
@@ -224,10 +224,10 @@ requesting features. In this file, we are exporting a page component which is
 
 In the component body, we can declare `const` variables that contain the fetched
 data. One thing to note is that the data requests are unintentionally blocking
-each other right now, creating what's known as a request waterfall. Moreover,
-we learned that Next.js prerenders the routes to improve user experience and
-client performance. This is called static rendering, and when data is finally
-loaded the elements in the dashboard won't be moving around.
+each other right now, creating what's known as a request waterfall. Moreover, we
+learned that Next.js prerenders the routes to improve user experience and client
+performance. This is called static rendering, and when data is finally loaded
+the elements in the dashboard won't be moving around.
 
 ### Request Waterfalls
 
