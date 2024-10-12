@@ -14,7 +14,7 @@ export function CreateInvoice() {
   );
 }
 
-// eslint @typescript-eslint/no-unused-vars: "off"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function UpdateInvoice({ id }: { id: string }) {
   return (
     <Link
@@ -26,7 +26,7 @@ export function UpdateInvoice({ id }: { id: string }) {
   );
 }
 
-// eslint @typescript-eslint/no-unused-vars: "off"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function DeleteInvoice({ id }: { id: string }) {
   return (
     <>

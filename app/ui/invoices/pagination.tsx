@@ -4,6 +4,7 @@ import React from "react";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import Link from "next/link";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { generatePagination } from "@/app/lib/utils";
 
 export default function Pagination() {
@@ -54,6 +55,7 @@ export default function Pagination() {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function PaginationNumber({
   page,
   href,
@@ -85,6 +87,7 @@ function PaginationNumber({
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function PaginationArrow({
   href,
   direction,

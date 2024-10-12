@@ -52,8 +52,6 @@
 
     # HTML, CSS, JS, TS, etc.
     prettier.enable = true;
-    # eslint = {
-    #   enable = true;
-    # };
+    eslint.enable = true;
   };
 }

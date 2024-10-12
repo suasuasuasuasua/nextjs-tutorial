@@ -2,6 +2,7 @@ import React from "react";
 import { generateYAxis } from "@/app/lib/utils";
 import { CalendarIcon } from "@heroicons/react/24/outline";
 import { lusitana } from "@/app/ui/fonts";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Revenue } from "@/app/lib/definitions";
 import { fetchRevenue } from "@/app/lib/data";
 
