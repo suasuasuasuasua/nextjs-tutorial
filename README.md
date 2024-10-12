@@ -258,3 +258,42 @@ With dynamic rendering, our application is as slow as our slowest data fetch.
 We've added an artificial 3 second delay in `fetchRevenue()` under
 `./app/lib/data.ts`. With this delay, our whole app freezes until that revenue
 data is fetched.
+
+## Chapter 9 - Streaming
+
+Streaming is a data transfer technique where we break down a route into smaller
+chunks and progressively stream the content as it becomes ready.
+
+With streaming we can prevent slow data requests from completely freezing our
+page. The user will still be able to interact with the UI while the rest of the
+data is being loaded in. Note that there won't be any layout shift because
+Next.js computes where everything _should_ be at compile time. Streaming works
+well with React because each component can be considered a chunk, and thus
+loaded in parallel independently from one another.
+
+`loading.tsx` is a special Next.js file built on top of `Suspense`. It is a
+fallback UI that is shown when the page content is still being loaded. Since the
+`SideNav` is a static element, it is shown immediately.
+
+The `DashboardSkeleton` is something that we can show in the meantime (defined
+in `./app/ui/skeletons.tsx`). Moreover, since `load.tsx` is higher in the tree
+structure than `./app/dashboard/invoices` and `./app/dashboard/customers`, these
+changes will be applied downstream. We don't necessarily want them to have these
+changes though, so we can define an `(overview)/` folder to create Route groups.
+
+Route groups let us organize the files into logical groups without creating new
+URLs or affecting the URL path structure. So `/dashboard/(overview)/page.tsx`
+becomes `/dashboard`. We can do custom route groups like `(marketing)` or
+`(shopping)` for larger applications too.
+
+Up to this point, we've been streaming an entire page at a time. We can be more
+granular by streaming by component using React's `Suspense`. `Suspense` allow us
+to render parts of the application until some condition is met (like when data
+is loaded). We can wrap those specific components in a `Suspense` and pass a
+fallback component while the dynamic content is loading.
+
+We can group components that we want to be loaded together in a wrapper. It is
+really up to the designer what they are prioritizing when creating the suspense
+boundaries. Ideally, we want to move suspenses to the components that actually
+need and fetch data. We shouldn't be trying to load all the data in at once in a
+parent component.
