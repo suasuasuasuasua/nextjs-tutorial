@@ -239,3 +239,22 @@ One way to achieve parallel data fetching is by using Javascript's
 `Promise.all()` or `Promise.allSettled()` functions to initiate all promises at
 the same time. One problem with this approach is that one request which is
 disproportionately slower than the rest will slow all other requests down.
+
+## Chapter 8 - Static and Dynamic Rendering
+
+Static rendering happens on the server at build time or when data is
+revalidated. When users access the website, the cached result (which is built on
+the server) is served, leading to 1) faster loading times, 2) reduced server
+load, and 3) better SEO (search engine optimization) because web crawlers can
+more easily index statically served content.
+
+Dynamic rendering is where the content is rendered on the server on a per-user
+basis. For example, the dashboard would be a good place for dynamic rendering
+because we want users to see the latest changes, which isn't necessarily at the
+compile/deploy time. Moreover, we can cater to specific users by showing their
+own data, interact with cookies, etc.
+
+With dynamic rendering, our application is as slow as our slowest data fetch.
+We've added an artificial 3 second delay in `fetchRevenue()` under
+`./app/lib/data.ts`. With this delay, our whole app freezes until that revenue
+data is fetched.
