@@ -344,3 +344,47 @@ export const experimental_ppr = true;
 
 Next.js believes that PPR has the potential to become the next default rendering
 model for web applications!
+
+## Chapter 11 - Adding Search and Pagination
+
+We are going to be adding search features for the invoices on the dashboard. The
+user will be presented with a page where they can search, create, and see
+invoices based on some search parameter.
+
+We will be using a URL search parameter to connect what the user's actions to
+the server's data fetching and rendering on the client side. The reason why we
+are using the URL itself to manage the search state is because 1) we have the
+ability to bookmark and share the URL, 2) the server side processing is easier
+since we can simply look at the URL parameters, and 3) we can track user
+behaviour without implementing any additional client side logic -- i.e. which
+_pages_ or _queries_ are the most popular?
+
+To implement the search functionality, we can use Next.js API functions like
+
+- `useSearchParams` to access the parameters in the current URL
+- `usePathname` to let us read the current URL's pathname
+- `useRouter` will enable navigation between routes within client components
+  programmatically
+
+The implementations steps are like this:
+
+1. Capture the user's input in the search box
+   - Inside `./app/ui/search.tsx`, we declare search as a client component so
+     that we can manage state using event listeners and hooks
+   - We can define assign `onChange` function for the text input field
+2. Update the URL with the search parameters
+   - The URL can be updated using a few Next.js APIs but namely the `replace()`
+     from `useRouter`
+3. Keep the URL in sync with the search field
+   - We can fetch the current URL, extract the query, then fill that query into
+     the search input
+4. Update the table with the search parameters
+   - On the `./app/dashboard/invoices/page.tsx`, we can use a special property
+     available to `page.tsx` called `searchParams` to extract the query and
+     handle the request in the `Suspense`.
+   - First, we'll actually want to implement debouncing because each keystroke
+     queries the database
+
+We can also add pagination by considering which page we are currently on and
+dividing the query into N pages depending on having M queries on each page. We
+can use the page number as an offset into the database query.
