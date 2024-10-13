@@ -297,3 +297,50 @@ really up to the designer what they are prioritizing when creating the suspense
 boundaries. Ideally, we want to move suspenses to the components that actually
 need and fetch data. We shouldn't be trying to load all the data in at once in a
 parent component.
+
+## Chapter 10 - Partial Prerendering
+
+Partial prerendering (PPR) is a technique that combines static and dynamic
+rendering and streaming. In Next.js, when we call dynamic functions in a route
+(like querying the database for example), the entire route becomes dynamic.
+
+For our app, we would consider the login page static, while most of the
+components on the dashboard should be dynamic because it is presenting data
+specifically for the user -- the only exception is the side navigation bar
+because it does not have any data requests. In general, if the components relies
+on database queries or API fetches, it is a dynamic component.
+
+PPR is an experimental rendering model that combines both static and dynamic
+rendering schemes in the same route. When a user visits a page, they are served
+a static route that has all the constructed components in place. There are
+shells left in places where dynamic content will be slotted in. These holes are
+streamed in parallel to reduce the overall load of the page.
+
+PPR uses React's `Suspense` to defer rendering parts of the application until
+some condition is met. The suspense fallback is embedded into the static page as
+a skeleton, so that at build time this is what is being shown instead of the
+_actual_ data. The rendering of the data is actually postponed until the user
+requests the route.
+
+Go to `./next.config.mjs` and add the following.
+
+```js
+const nextConfig = {
+  experimental: {
+    // Enable partial prerendering
+    ppr: "incremental",
+  },
+};
+```
+
+Then go to `./app/dashboard/layout.tsx` and add the following.
+
+```js
+// Explicitly add the experimental partial prerendering flag to the dashboard
+// layout -- the great thing about PPR is that we don't need to change our code
+// to use it
+export const experimental_ppr = true;
+```
+
+Next.js believes that PPR has the potential to become the next default rendering
+model for web applications!
