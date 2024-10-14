@@ -98,7 +98,6 @@ Adding a font is as simple as:
 
 ```typescript
 // ./app/ui/fonts.ts
-
 import { Inter } from "next/font/google";
 
 // We can import some font using the next/font API from google

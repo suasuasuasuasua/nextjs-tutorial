@@ -1,10 +1,10 @@
-import React from "react";
-import { generateYAxis } from "@/app/lib/utils";
-import { CalendarIcon } from "@heroicons/react/24/outline";
-import { lusitana } from "@/app/ui/fonts";
+import { fetchRevenue } from "@/app/lib/data";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Revenue } from "@/app/lib/definitions";
-import { fetchRevenue } from "@/app/lib/data";
+import { generateYAxis } from "@/app/lib/utils";
+import { lusitana } from "@/app/ui/fonts";
+import { CalendarIcon } from "@heroicons/react/24/outline";
+import React from "react";
 
 // This component is representational only.
 // For data visualization UI, check out:

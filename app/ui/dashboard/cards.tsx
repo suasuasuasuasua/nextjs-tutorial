@@ -1,12 +1,12 @@
+import { fetchCardData } from "@/app/lib/data";
+import { lusitana } from "@/app/ui/fonts";
 import {
   BanknotesIcon,
   ClockIcon,
   UserGroupIcon,
   InboxIcon,
 } from "@heroicons/react/24/outline";
-import { lusitana } from "@/app/ui/fonts";
 import React from "react";
-import { fetchCardData } from "@/app/lib/data";
 
 const iconMap = {
   collected: BanknotesIcon,

@@ -13,6 +13,8 @@ const config = {
   tabWidth: 2,
   trailingComma: "es5",
   useTabs: false,
+
+  plugins: ["@trivago/prettier-plugin-sort-imports"],
 };
 
 export default config;

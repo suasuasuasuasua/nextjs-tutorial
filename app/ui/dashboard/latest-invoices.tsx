@@ -1,11 +1,11 @@
-import React from "react";
+import { fetchLatestInvoices } from "@/app/lib/data";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { LatestInvoice } from "@/app/lib/definitions";
+import { lusitana } from "@/app/ui/fonts";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import Image from "next/image";
-import { lusitana } from "@/app/ui/fonts";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { LatestInvoice } from "@/app/lib/definitions";
-import { fetchLatestInvoices } from "@/app/lib/data";
+import React from "react";
 
 export default async function LatestInvoices() {
   const latestInvoices = await fetchLatestInvoices();

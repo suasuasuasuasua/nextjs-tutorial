@@ -1,13 +1,12 @@
-import React from "react";
+import { Button } from "./button";
 import { lusitana } from "@/app/ui/fonts";
+import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import {
   AtSymbolIcon,
-  KeyIcon,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  KeyIcon, // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ExclamationCircleIcon,
 } from "@heroicons/react/24/outline";
-import { ArrowRightIcon } from "@heroicons/react/20/solid";
-import { Button } from "./button";
+import React from "react";
 
 export default function LoginForm() {
   return (

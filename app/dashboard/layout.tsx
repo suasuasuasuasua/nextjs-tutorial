@@ -1,5 +1,5 @@
-import React from "react";
 import SideNav from "../ui/dashboard/sidenav";
+import React from "react";
 
 // Explicitly add the experimental partial prerendering flag to the dashboard
 // layout -- the great thing about PPR is that we don't need to change our code
