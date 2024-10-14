@@ -387,3 +387,67 @@ The implementations steps are like this:
 We can also add pagination by considering which page we are currently on and
 dividing the query into N pages depending on having M queries on each page. We
 can use the page number as an offset into the database query.
+
+## Chapter 12 - Mutating Data
+
+React Server Actions allow us to run code asynchronously directly on the server.
+It eliminates API endpoints that we otherwise would use to modify the data.
+These are asynchronous functions that can be called from client or server
+components. Server actions offer an effective security solution by using POST
+requests, encrypted closures, strict input checks, error message hashing, etc.
+There are also features like caching and progressive enhancement that make
+Server Actions an appealing option.
+
+To create an invoice, we can follow these steps.
+
+1. Create a form to capture the user's input.
+   - Define a new route in `/invoices` folder for creating invoices
+   - Use the existing form template to fill in the page
+     - Note the breadcrumb at the top is composed of stacking `href`s
+     - Form is composed of subforms -- select, input, buttons, etc.
+2. Create a Server Action and invoke it from the form.
+   - Inside `./app/lib/actions.ts`, we've gone ahead and written a simple
+     callback function that destructure the form data
+3. Inside your Server Action, extract the data from the formData object.
+   - Inside `./app/lib/actions.ts`, we've gone ahead and written a simple
+     callback function that destructure the form data
+4. Validate and prepare the data to be inserted into your database.
+   - The database schema is different than what we expect
+   - We'll have to do some data corecion to get it into the correct form
+   - Use an input validation library like `Zod` to massage the data into what we
+     want
+5. Insert the data and handle any errors.
+   - Use the `sql` API to add the data to the database (no input validation
+     yet..)
+6. Revalidate the cache and redirect the user back to invoices page.
+   - Next.js uses a client-side router cache that stores the route segments for
+     some time. Caching along with prefetching allows the user can quickly
+     navigate the route AND reduce the number of requests made to the server
+   - Revalidate the cache to trigger a new request to the server to load the
+     invoices page, and then also redirect the user back to the invoices page to
+     see the new request
+
+To update an invoice, we can do something similar to creating an invoice but
+we'll need the invoice ID so that we can update it in the database.
+
+1. Create a new dynamic route segment with the invoice `id`
+   - Next.js allows you to create dynamic route segments when we don't
+     necessarily know the exact route name and want it to the based on data. We
+     can create dynamic route segments by wrapping a folder's name is square
+     brackets. For example, we can make `[id]`, `[post]`, `[slug]`
+2. Read the invoice `id` from the page `params`
+   - When the use clicks the edit or delete button on an invoice, we'll get
+     passed the ID to dynamically construct a route
+   - Right now, when we're updating, we'll use that information
+3. Fetch the specific invoice
+   - We'll grab the correct invoice by using the customer's ID
+4. Pass the `id` to the server action
+   - Next, we'll need to pass the ID to the server action, but we can't do this
+     directly
+   - The reason is because we can't pass arguments as part of the callback
+     function
+   - We'll instead return a binding of the function with a default argument set,
+     i.e. the id of the customer
+
+Deleting an invoice is very similar to update, except that we'll just modify the
+`sql` query to delete instead.

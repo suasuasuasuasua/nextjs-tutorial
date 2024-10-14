@@ -1,3 +1,4 @@
+import { createInvoice } from "@/app/lib/actions";
 import { CustomerField } from "@/app/lib/definitions";
 import { Button } from "@/app/ui/button";
 import {
@@ -9,9 +10,11 @@ import {
 import Link from "next/link";
 import React from "react";
 
+// Form is really just a wrapper around the actual React form component
 export default function Form({ customers }: { customers: CustomerField[] }) {
   return (
-    <form>
+    // When the form is submitted, then we'll go ahead and handle the form data
+    <form action={createInvoice}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
@@ -21,6 +24,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
           <div className="relative">
             <select
               id="customer"
+              // We give names to the form data that we'll later deconstruct
               name="customerId"
               className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               defaultValue=""
@@ -47,6 +51,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
             <div className="relative">
               <input
                 id="amount"
+                // We give names to the form data that we'll later deconstruct
                 name="amount"
                 type="number"
                 step="0.01"
@@ -68,6 +73,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
               <div className="flex items-center">
                 <input
                   id="pending"
+                  // We give names to the form data that we'll later deconstruct
                   name="status"
                   type="radio"
                   value="pending"
